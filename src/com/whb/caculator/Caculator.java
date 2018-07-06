@@ -499,7 +499,7 @@ public class Caculator extends Activity {
         int length = str.length();
         if (length > 0) {
             updateInput(str.substring(0, length-1));
-        updateResult("");
+            updateResult("");
         }
     }
 
@@ -636,7 +636,7 @@ public class Caculator extends Activity {
             if (index == 0) { // mean the first value exist symbol.
                 index = getNextSymbolIndex(input.substring(1));
                 if (index == -1) {
-                	if (input.length() > 1) { // mean the first value is not only symbol.
+                    if (input.length() > 1) { // mean the first value is not only symbol.
                         value = Double.valueOf(input).doubleValue();
                     }
                 } else {
@@ -740,7 +740,7 @@ public class Caculator extends Activity {
         }
 
         private void logi(String str) {
-        	Log.i(Caculator.TAG, "[" + TAG + "]" + str);
+            Log.i(Caculator.TAG, "[" + TAG + "]" + str);
         }
 
         private void loge(String str) {
@@ -800,19 +800,19 @@ public class Caculator extends Activity {
 
         public void dump() {
             if(DEBUG) {
-        	    logi("----------symbol dump begin--------------");
-        	    StringBuilder sb = new StringBuilder();
-        	    for (int i=0; i<mLength; i++) {
-        	        sb.append(convertSymbol2String(mData[i]));
-        	        sb.append(", ");
-        	    }
-        	    logi(sb.toString());
-        	    logi("----------symbol dump end--------------");
+                logi("----------symbol dump begin--------------");
+                StringBuilder sb = new StringBuilder();
+                for (int i=0; i<mLength; i++) {
+                    sb.append(convertSymbol2String(mData[i]));
+                    sb.append(", ");
+                }
+                logi(sb.toString());
+                logi("----------symbol dump end--------------");
             }
         }
 
         private void logi(String str) {
-        	Log.i(Caculator.TAG, "[" + TAG + "]" + str);
+            Log.i(Caculator.TAG, "[" + TAG + "]" + str);
         }
 
         private void loge(String str) {
