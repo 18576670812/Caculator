@@ -44,156 +44,156 @@ public class Caculator extends Activity {
     private static final String TAG = "Caculator";
     private static final boolean DEBUG = false;
 
-	private Context mContext = null;
-	private Button mOne = null;
-	private Button mTwo = null;
-	private Button mThree = null;
-	private Button mFour = null;
-	private Button mFive = null;
-	private Button mSix = null;
-	private Button mSeven = null;
-	private Button mEight = null;
-	private Button mNine = null;
-	private Button mZero = null;
-	private Button mDot = null;
-	private Button mEqual = null;
-	private Button mDelete = null;
-	private Button mAdd = null;
-	private Button mSubtract = null;
-	private Button mMultiply = null;
-	private Button mDivide = null;
-	private Button mClear = null;
-	private TextView mInput = null;
-	private TextView mResult = null;
+    private Context mContext = null;
+    private Button mOne = null;
+    private Button mTwo = null;
+    private Button mThree = null;
+    private Button mFour = null;
+    private Button mFive = null;
+    private Button mSix = null;
+    private Button mSeven = null;
+    private Button mEight = null;
+    private Button mNine = null;
+    private Button mZero = null;
+    private Button mDot = null;
+    private Button mEqual = null;
+    private Button mDelete = null;
+    private Button mAdd = null;
+    private Button mSubtract = null;
+    private Button mMultiply = null;
+    private Button mDivide = null;
+    private Button mClear = null;
+    private TextView mInput = null;
+    private TextView mResult = null;
 
-	private static final Pattern INVALID_DATA_REGULAR = Pattern.compile("(\\d*\\.\\d*\\.)");
-	private StackData mDataStack = new StackData();
-	private StackSymbol mSymbolStack = new StackSymbol();
+    private static final Pattern INVALID_DATA_REGULAR = Pattern.compile("(\\d*\\.\\d*\\.)");
+    private StackData mDataStack = new StackData();
+    private StackSymbol mSymbolStack = new StackSymbol();
 
     private static final double PRECISION_LOW = -0.0000001;
     private static final double PRECISION_UP = 0.0000001;
     private static final double INVALID = 4294967295.0;
 
     private static final int NONE = 0;
-	private static final int ADD = 1;
-	private static final int SUB = 2;
-	private static final int MULTI = 3;
-	private static final int DIV = 4;
+    private static final int ADD = 1;
+    private static final int SUB = 2;
+    private static final int MULTI = 3;
+    private static final int DIV = 4;
 
     private static final int EQUAL = 0;
-	private static final int LESS = -1;
-	private static final int MORE = 1;
+    private static final int LESS = -1;
+    private static final int MORE = 1;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		mContext = this;
-		setContentView(R.layout.activity_main);
-		
-		init(mContext);
-	}
-	
-	private void init(Context context) {
-		mOne = (Button)findViewById(R.id.one);
-		mOne.setOnClickListener(mClickListener);
-		
-		mTwo = (Button)findViewById(R.id.two);
-		mTwo.setOnClickListener(mClickListener);
-		
-		mThree = (Button)findViewById(R.id.three);
-		mThree.setOnClickListener(mClickListener);
-		
-		/*--------------------------------------------*/
-		
-		mFour = (Button)findViewById(R.id.four);
-		mFour.setOnClickListener(mClickListener);
-		
-		mFive = (Button)findViewById(R.id.five);
-		mFive.setOnClickListener(mClickListener);
-		
-		mSix = (Button)findViewById(R.id.six);
-		mSix.setOnClickListener(mClickListener);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mContext = this;
+        setContentView(R.layout.activity_main);
 
-		/*--------------------------------------------*/
-		
-		mSeven = (Button)findViewById(R.id.seven);
-		mSeven.setOnClickListener(mClickListener);
-		
-		mEight = (Button)findViewById(R.id.eight);
-		mEight.setOnClickListener(mClickListener);
-		
-		mNine = (Button)findViewById(R.id.nine);
-		mNine.setOnClickListener(mClickListener);
+        init(mContext);
+    }
 
-		/*--------------------------------------------*/
-		
+    private void init(Context context) {
+        mOne = (Button)findViewById(R.id.one);
+        mOne.setOnClickListener(mClickListener);
+
+        mTwo = (Button)findViewById(R.id.two);
+        mTwo.setOnClickListener(mClickListener);
+
+        mThree = (Button)findViewById(R.id.three);
+        mThree.setOnClickListener(mClickListener);
+
+        /*--------------------------------------------*/
+
+        mFour = (Button)findViewById(R.id.four);
+        mFour.setOnClickListener(mClickListener);
+
+        mFive = (Button)findViewById(R.id.five);
+        mFive.setOnClickListener(mClickListener);
+
+        mSix = (Button)findViewById(R.id.six);
+        mSix.setOnClickListener(mClickListener);
+
+        /*--------------------------------------------*/
+
+        mSeven = (Button)findViewById(R.id.seven);
+        mSeven.setOnClickListener(mClickListener);
+
+        mEight = (Button)findViewById(R.id.eight);
+        mEight.setOnClickListener(mClickListener);
+
+        mNine = (Button)findViewById(R.id.nine);
+        mNine.setOnClickListener(mClickListener);
+
+        /*--------------------------------------------*/
+
         mDot = (Button)findViewById(R.id.dot);
         mDot.setOnClickListener(mClickListener);
 
-		mZero = (Button)findViewById(R.id.zero);
-		mZero.setOnClickListener(mClickListener);
+        mZero = (Button)findViewById(R.id.zero);
+        mZero.setOnClickListener(mClickListener);
 
-		mEqual = (Button)findViewById(R.id.equal);
-		mEqual.setOnClickListener(mClickListener);
+        mEqual = (Button)findViewById(R.id.equal);
+        mEqual.setOnClickListener(mClickListener);
 
-		/*--------------------------------------------*/
-		
-		mAdd = (Button)findViewById(R.id.add);
-		mAdd.setOnClickListener(mClickListener);
-		
-		mSubtract = (Button)findViewById(R.id.subtract);
-		mSubtract.setOnClickListener(mClickListener);
-		
-		mMultiply = (Button)findViewById(R.id.multiply);
-		mMultiply.setOnClickListener(mClickListener);
-		
-		mDivide = (Button)findViewById(R.id.divide);
-		mDivide.setOnClickListener(mClickListener);
+        /*--------------------------------------------*/
 
-		/*--------------------------------------------*/
-		
-		mDelete = (Button)findViewById(R.id.delete);
-		mDelete.setOnClickListener(mClickListener);
-		
-		mClear = (Button)findViewById(R.id.clear);
-		mClear.setOnClickListener(mClickListener);
+        mAdd = (Button)findViewById(R.id.add);
+        mAdd.setOnClickListener(mClickListener);
 
-		/*--------------------------------------------*/
-		
-		mInput = (TextView)findViewById(R.id.input);
-		mInput.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-		
-		mResult = (TextView)findViewById(R.id.result);
-		mResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
-	}
+        mSubtract = (Button)findViewById(R.id.subtract);
+        mSubtract.setOnClickListener(mClickListener);
 
-	private String getLastDataString() {
-		String str = "";
-		if (mInput != null) {
+        mMultiply = (Button)findViewById(R.id.multiply);
+        mMultiply.setOnClickListener(mClickListener);
+
+        mDivide = (Button)findViewById(R.id.divide);
+        mDivide.setOnClickListener(mClickListener);
+
+        /*--------------------------------------------*/
+
+        mDelete = (Button)findViewById(R.id.delete);
+        mDelete.setOnClickListener(mClickListener);
+
+        mClear = (Button)findViewById(R.id.clear);
+        mClear.setOnClickListener(mClickListener);
+
+        /*--------------------------------------------*/
+
+        mInput = (TextView)findViewById(R.id.input);
+        mInput.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+
+        mResult = (TextView)findViewById(R.id.result);
+        mResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+    }
+
+    private String getLastDataString() {
+        String str = "";
+        if (mInput != null) {
             str = mInput.getText().toString();
             int index = -1;
             while((index = getNextSymbolIndex(str)) > -1) {
             	str = str.substring(index+1);
             }
-		}
+        }
 
         return str;
-	}
+    }
 
     private void digitButtonPressed(String str) {
-		if (mInput != null) {
-	    	if(str.equalsIgnoreCase(".")) {
-			    String lastDataString =  getLastDataString();
-	    	    String temp = lastDataString + str;
-	    	    Matcher m = INVALID_DATA_REGULAR.matcher(temp);
-	    	    if (m.matches()) {
-	    	        // do nothing;
-	    		    return ;
-	    	    }
-	    	}
+        if (mInput != null) {
+            if(str.equalsIgnoreCase(".")) {
+                String lastDataString =  getLastDataString();
+                String temp = lastDataString + str;
+                Matcher m = INVALID_DATA_REGULAR.matcher(temp);
+                if (m.matches()) {
+                    // do nothing;
+                    return ;
+                }
+            }
 
-	    	mInput.setText(mInput.getText().toString() + str);
-		}
+            mInput.setText(mInput.getText().toString() + str);
+        }
     }
 
     private boolean checkLastCharIsOperator () {
@@ -220,144 +220,144 @@ public class Caculator extends Activity {
              return; // last char is operator, do nothing.
     	}
     	
-    	String string = mInput.getText().toString();
+        String string = mInput.getText().toString();
         mInput.setText( string + str);
     }
 
-	private View.OnClickListener mClickListener = new View.OnClickListener() {
-		
-		@Override
-		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
-			if (arg0 != null) {
-				switch(arg0.getId()){
-				case R.id.one:
-					digitButtonPressed("1");
-					break;
-					
-				case R.id.two:
-					digitButtonPressed("2");
-					break;
-					
-				case R.id.three:
-					digitButtonPressed("3");
-					break;
-					
-				case R.id.four:
-					digitButtonPressed("4");
-					break;
-					
-				case R.id.five:
-					digitButtonPressed("5");
-					break;
-				
-				case R.id.six:
-					digitButtonPressed("6");
-					break;
-					
-				case R.id.seven:
-					digitButtonPressed("7");
-					break;
-				
-				case R.id.eight:
-					digitButtonPressed("8");
-					break;
-				
-				case R.id.nine:
-					digitButtonPressed("9");
-					break;
-					
-				case R.id.zero:
-					digitButtonPressed("0");
-					break;
-					
-				case R.id.dot:
-					digitButtonPressed(".");
-					break;
-				
-				case R.id.add:
-					symbolButtonPressed("+");
-					break;
-					
-				case R.id.subtract:
-					symbolButtonPressed("-");
-					break;
-				
-				case R.id.multiply:
-					symbolButtonPressed("x");
-					break;
-					
-				case R.id.divide:
-					symbolButtonPressed("/");
-					break;
-					
-				case R.id.equal:
-					pressedEqualButton();
-					break;
-					
-				case R.id.clear:
-					clear();
-				    break;
-				    
-				case R.id.delete:
-					pressedDeleteButton();
-					break;
-				    
-				default:
-					loge("no support this operator, do nothing!");
-					break;
-				}
-			}
-		}
-	};
+    private View.OnClickListener mClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View arg0) {
+            // TODO Auto-generated method stub
+            if (arg0 != null) {
+                switch(arg0.getId()){
+                case R.id.one:
+                    digitButtonPressed("1");
+                    break;
+
+                case R.id.two:
+                    digitButtonPressed("2");
+                    break;
+
+                case R.id.three:
+                    digitButtonPressed("3");
+                    break;
+
+                case R.id.four:
+                    digitButtonPressed("4");
+                    break;
+
+                case R.id.five:
+                    digitButtonPressed("5");
+                    break;
+
+                case R.id.six:
+                    digitButtonPressed("6");
+                    break;
+
+                case R.id.seven:
+                    digitButtonPressed("7");
+                    break;
+
+                case R.id.eight:
+                    digitButtonPressed("8");
+                    break;
+
+                case R.id.nine:
+                    digitButtonPressed("9");
+                    break;
+
+                case R.id.zero:
+                    digitButtonPressed("0");
+                    break;
+
+                case R.id.dot:
+                    digitButtonPressed(".");
+                    break;
+
+                case R.id.add:
+                    symbolButtonPressed("+");
+                    break;
+
+                case R.id.subtract:
+                    symbolButtonPressed("-");
+                    break;
+
+                case R.id.multiply:
+                    symbolButtonPressed("x");
+                    break;
+
+                case R.id.divide:
+                    symbolButtonPressed("/");
+                    break;
+
+                case R.id.equal:
+                    pressedEqualButton();
+                    break;
+
+                case R.id.clear:
+                    clear();
+                    break;
+
+                case R.id.delete:
+                    pressedDeleteButton();
+                    break;
+
+                default:
+                    loge("no support this operator, do nothing!");
+                    break;
+                }
+            }
+        }
+    };
 	
-	private double caculator(double paramA, double paramB, int operator, boolean existParamB) {
+    private double caculator(double paramA, double paramB, int operator, boolean existParamB) {
         double result = 0.0;
-		switch (operator) {
-		case ADD:
+        switch (operator) {
+        case ADD:
             if(!existParamB) {
-            	paramB = 0.0;
+                paramB = 0.0;
             }
-			result = paramA + paramB;
+            result = paramA + paramB;
             break;
 
-		case SUB:
+        case SUB:
             if(!existParamB) {
-            	paramB = 0.0;
+                paramB = 0.0;
             }
-			result = paramA - paramB;
+            result = paramA - paramB;
             break;
 
-		case MULTI:
+        case MULTI:
             if(!existParamB) {
-            	paramB = 1.0;
+                paramB = 1.0;
             }
-			result = paramA * paramB;
+            result = paramA * paramB;
             break;
 
-		case DIV:
+        case DIV:
             if(!existParamB) {
-            	paramB = 1.0;
+                paramB = 1.0;
             }
 
             if (paramB != 0) {
-				result = paramA / paramB;
+                result = paramA / paramB;
             } else {
                 loge("divide param can't be zero");
-    			result = INVALID;
+                result = INVALID;
             }
             break;
 
         default:
-        	result = INVALID;
+            result = INVALID;
             break;
-		}
+        }
 
-		if(DEBUG) {
+        if(DEBUG) {
             logi(paramA + convertSymbol2String(operator) + paramB + "=" + result);
         }
         return result;
-	}
+    }
 
     private boolean compareDoubleValue(double a, double b) {
         if ((a-b) > PRECISION_LOW && (a-b) < PRECISION_UP) {
@@ -421,7 +421,7 @@ public class Caculator extends Activity {
                     firstOperator = secondOperator;
                     secondOperator = NONE;
                 }
-			} else if (compareSymbolPriority(firstOperator, secondOperator) == LESS) {
+            } else if (compareSymbolPriority(firstOperator, secondOperator) == LESS) {
                 boolean existThirdValue = false;
                 if (!mDataStack.isEmpty()) {
                 	existThirdValue = true;
@@ -441,7 +441,7 @@ public class Caculator extends Activity {
         } while (firstOperator != NONE);
 
         return firstValue;
-	}
+    }
 
     private void reset() {
         mDataStack.clear();
@@ -481,29 +481,29 @@ public class Caculator extends Activity {
         }
     }
 
- 	private void updateResult(String info) {
-	    if (mResult != null) {
-		    mResult.setText(info);
-	    }
-	}
-	
-	private void showErrorToast(String errorMessage) {
-        // for debug
-		if (DEBUG) {
-		    Toast.makeText(mContext, errorMessage, Toast.LENGTH_SHORT).show();
-		}
-	}
-	
-	private void pressedDeleteButton() {
-        String str = mInput.getText().toString();
-	    int length = str.length();
-        if (length > 0) {
-        	updateInput(str.substring(0, length-1));
-        	updateResult("");
+    private void updateResult(String info) {
+        if (mResult != null) {
+            mResult.setText(info);
         }
-	}
+    }
 
-	private void pressedEqualButton() {
+    private void showErrorToast(String errorMessage) {
+        // for debug
+        if (DEBUG) {
+            Toast.makeText(mContext, errorMessage, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void pressedDeleteButton() {
+        String str = mInput.getText().toString();
+        int length = str.length();
+        if (length > 0) {
+            updateInput(str.substring(0, length-1));
+        updateResult("");
+        }
+    }
+
+    private void pressedEqualButton() {
         String input = null;
         if (mInput != null) {
             input = mInput.getText().toString();
@@ -515,19 +515,19 @@ public class Caculator extends Activity {
             showErrorToast("divide param can't be zero");
             updateResult("can't divide by 0");
         } else {
-        	updateResult(result);
+            updateResult(result);
         }
     }
-	
+
     private void updateResult(double result) {
         if (mResult != null) {
-        	mResult.setText(String.valueOf(Double.valueOf(result)));
+            mResult.setText(String.valueOf(Double.valueOf(result)));
         }
     }
 
     private void updateInput(String input) {
         if (mInput != null) {
-        	mInput.setText(input);
+            mInput.setText(input);
         }
     }
 
@@ -593,11 +593,11 @@ public class Caculator extends Activity {
         break;
 
         default:
-        	loge("symbol string is null or empty!");
+           loge("symbol string is null or empty!");
             break;
         }
         return symbol;
-	}
+    }
 
     private String convertSymbol2String(int symbol) {
         switch (symbol) {
@@ -614,9 +614,9 @@ public class Caculator extends Activity {
             return "/";
 
         default:
-			return "NONE";
+            return "NONE";
         }
-	}
+    }
 
     private void parseInput(String input){
         if (TextUtils.isEmpty(input)) {
@@ -624,8 +624,8 @@ public class Caculator extends Activity {
             return ;
         }
 
-		reset();
-		
+        reset();
+
         // -25+32
         int index = -1;
         double value;
@@ -633,17 +633,17 @@ public class Caculator extends Activity {
             index = getNextSymbolIndex(input);
             value = 0.0;
 
-	        if (index == 0) { // mean the first value exist symbol.
-	            index = getNextSymbolIndex(input.substring(1));
-	            if (index == -1) {
-	            	if (input.length() > 1) { // mean the first value is not only symbol.
-	                    value = Double.valueOf(input).doubleValue();
-	                }
-	            } else {
-	                index += 1;
+            if (index == 0) { // mean the first value exist symbol.
+                index = getNextSymbolIndex(input.substring(1));
+                if (index == -1) {
+                	if (input.length() > 1) { // mean the first value is not only symbol.
+                        value = Double.valueOf(input).doubleValue();
+                    }
+                } else {
+                    index += 1;
                     value = Double.valueOf(input.substring(0, index)).doubleValue();
-	            }
-	        } else if (index > 0) {
+                }
+            } else if (index > 0) {
                 value = Double.valueOf(input.substring(0, index)).doubleValue();
             } else {
                 if (!TextUtils.isEmpty(input)) {
@@ -676,7 +676,7 @@ public class Caculator extends Activity {
     	Log.e(TAG, str);
     }
 
-	public class StackData {
+    public class StackData {
         private static final String TAG = "StackData";
         private double[] mData = null;
         private static final int DEEP = 100;
@@ -710,7 +710,7 @@ public class Caculator extends Activity {
                 mIndex = 0;
                 return 0.0;
             }
-		}
+        }
 
         public boolean isEmpty() {
             if (mLength == 0) {
@@ -727,7 +727,7 @@ public class Caculator extends Activity {
         }
 
         public void dump() {
-        	if(DEBUG) {
+            if(DEBUG) {
                 logi("----------data dump begin--------------");
                 StringBuilder sb = new StringBuilder();
                 for (int i=0; i<mLength; i++) {
@@ -736,7 +736,7 @@ public class Caculator extends Activity {
                 }
                 logi(sb.toString());
                 logi("----------data dump end--------------");
-        	}
+            }
         }
 
         private void logi(String str) {
@@ -744,9 +744,9 @@ public class Caculator extends Activity {
         }
 
         private void loge(String str) {
-        	Log.i(Caculator.TAG, "[" + TAG + "]" + str);
+            Log.i(Caculator.TAG, "[" + TAG + "]" + str);
         }
-	}
+    }
 
     public class StackSymbol {
         private static final String TAG = "StackSymbol";
@@ -782,7 +782,7 @@ public class Caculator extends Activity {
                 mIndex = 0;
                 return NONE;
             }
-		}
+        }
 
         public boolean isEmpty() {
             if (mLength == 0) {
@@ -799,7 +799,7 @@ public class Caculator extends Activity {
         }
 
         public void dump() {
-        	if(DEBUG) {
+            if(DEBUG) {
         	    logi("----------symbol dump begin--------------");
         	    StringBuilder sb = new StringBuilder();
         	    for (int i=0; i<mLength; i++) {
@@ -808,7 +808,7 @@ public class Caculator extends Activity {
         	    }
         	    logi(sb.toString());
         	    logi("----------symbol dump end--------------");
-        	}
+            }
         }
 
         private void logi(String str) {
@@ -816,8 +816,8 @@ public class Caculator extends Activity {
         }
 
         private void loge(String str) {
-        	Log.e(Caculator.TAG, "[" + TAG + "]" + str);
+            Log.e(Caculator.TAG, "[" + TAG + "]" + str);
         }
-	}
+    }
 }
 
