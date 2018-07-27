@@ -14,7 +14,7 @@
         android:scrollbars="vertical"
         android:scrollbarStyle="outsideOverlay"
         android:scrollbarFadeDuration="2000"
-        android:layout_height="200dp"/>
+        android:layout_height="280dp"/>
 
     <TextView
         android:layout_width="fill_parent"
@@ -26,7 +26,7 @@
         android:layout_width="fill_parent"
         android:background="#FFFFFF"
         android:textColor="#000000"
-        android:layout_height="40dp"/>
+        android:layout_height="50dp"/>
 
     <LinearLayout 
         android:layout_width="fill_parent"
@@ -37,7 +37,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/seven"/>
@@ -47,7 +47,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/eight"/>
@@ -57,7 +57,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/nine"/>
@@ -67,7 +67,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/add"/>
@@ -82,7 +82,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/four"/>
@@ -92,7 +92,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/five"/>
@@ -102,7 +102,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/six"/>
@@ -112,7 +112,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/subtract"/>
@@ -127,7 +127,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/one"/>
@@ -137,7 +137,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/two"/>
@@ -147,7 +147,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/three"/>
@@ -157,7 +157,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/multiply"/>
@@ -172,7 +172,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/dot"/>
@@ -182,7 +182,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/zero"/>
@@ -192,7 +192,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/equal"/>
@@ -202,7 +202,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/divide"/>
@@ -217,7 +217,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/clear"/>
@@ -227,7 +227,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:text="@string/delete"/>

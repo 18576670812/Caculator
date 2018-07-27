@@ -42,7 +42,7 @@ import android.widget.Toast;
 
 public class Caculator extends Activity {
     private static final String TAG = "Caculator";
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
 
     private Context mContext = null;
     private Button mOne = null;
@@ -67,6 +67,9 @@ public class Caculator extends Activity {
     private TextView mResult = null;
 
     private static final Pattern INVALID_DATA_REGULAR = Pattern.compile("(\\d*\\.\\d*\\.)");
+    private static final String DECIMAL_PREFIX = "0.";
+    private static final String EMPTY = "";
+
     private StackData mDataStack = new StackData();
     private StackSymbol mSymbolStack = new StackSymbol();
 
@@ -161,10 +164,10 @@ public class Caculator extends Activity {
         /*--------------------------------------------*/
 
         mInput = (TextView)findViewById(R.id.input);
-        mInput.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        mInput.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
 
         mResult = (TextView)findViewById(R.id.result);
-        mResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+        mResult.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
     }
 
     private String getLastDataString() {
@@ -181,6 +184,10 @@ public class Caculator extends Activity {
     }
 
     private void digitButtonPressed(String str) {
+    	if(str == null) {
+            return ; // do nothing.
+    	}
+        
         if (mInput != null) {
             if(str.equalsIgnoreCase(".")) {
                 String lastDataString =  getLastDataString();
@@ -189,6 +196,18 @@ public class Caculator extends Activity {
                 if (m.matches()) {
                     // do nothing;
                     return ;
+                }
+            } else {
+                String lastDataString =  getLastDataString();
+                int value = Integer.valueOf(str).intValue();
+                if(lastDataString.startsWith("0") && !lastDataString.startsWith(DECIMAL_PREFIX)) {
+          	        if(value >= 0 && value <= 9) {
+           	            int len = mInput.getText().toString().length();
+           	            String subString = mInput.getText().toString().substring(0, len-1);
+           	            mInput.setText(subString);
+           	        } else {
+           	            str = EMPTY;
+           	        }
                 }
             }
 
@@ -200,6 +219,7 @@ public class Caculator extends Activity {
         if(mInput != null && !TextUtils.isEmpty(mInput.getText().toString())) {
             String str = mInput.getText().toString();
             char ch = str.charAt(str.length()-1);
+
             switch (ch) {
             case '+':
             case '-':
@@ -215,13 +235,54 @@ public class Caculator extends Activity {
         return false;
     }
 
+    private boolean isOperator(char operator) {
+    	switch (operator) {
+    	case '+':
+    	case '-':
+    	case 'x':
+    	case '/':
+            return true;
+
+    	default:
+            return false;
+        }
+    }
+
     private void symbolButtonPressed(String str) {
-    	if (checkLastCharIsOperator()) {
-             return; // last char is operator, do nothing.
+		String input = mInput.getText().toString();
+
+        if (checkLastCharIsOperator()) {
+            char lastCh = input.charAt(input.length()-1);
+
+            if (isOperator(lastCh)) {
+                switch (lastCh) {
+                case 'x':
+                case '/':
+                    if (isOperator(str.charAt(0)) && !str.equals("-")) {
+                        mInput.setText(input.substring(0, input.length()-1)); // example: "123/+123" or "123*/123"
+                    }
+                    break;
+                
+                case '-':
+                case '+':
+                    if (isOperator(str.charAt(0))) {
+                        mInput.setText(input.substring(0, input.length()-1)); // example: "123+-123" or "123+x123"
+                    }
+                    break;
+
+                default:
+                	break;
+                }
+            }
     	}
-    	
-        String string = mInput.getText().toString();
-        mInput.setText( string + str);
+
+        input = mInput.getText().toString();
+        if (TextUtils.isEmpty(input) && 
+                (str.equals("+") || str.equals("x") || str.equals("/"))) {
+            return ; // the first char not allow to be '+', 'x', '/'
+        }
+
+        mInput.setText(mInput.getText().toString() + str);
     }
 
     private View.OnClickListener mClickListener = new View.OnClickListener() {
@@ -633,7 +694,7 @@ public class Caculator extends Activity {
             index = getNextSymbolIndex(input);
             value = 0.0;
 
-            if (index == 0) { // mean the first value exist symbol.
+            if (index == 0) { // mean the first value has prefix '-'.
                 index = getNextSymbolIndex(input.substring(1));
                 if (index == -1) {
                     if (input.length() > 1) { // mean the first value is not only symbol.
