@@ -249,7 +249,7 @@ public class Caculator extends Activity {
     }
 
     private void symbolButtonPressed(String str) {
-		String input = mInput.getText().toString();
+        String input = mInput.getText().toString();
 
         if (checkLastCharIsOperator()) {
             char lastCh = input.charAt(input.length()-1);
