@@ -184,12 +184,12 @@ public class Caculator extends Activity {
     }
 
     private void digitButtonPressed(String str) {
-    	if(str == null) {
+    	if (str == null) {
             return ; // do nothing.
     	}
         
         if (mInput != null) {
-            if(str.equalsIgnoreCase(".")) {
+            if (str.equalsIgnoreCase(".")) {
                 String lastDataString =  getLastDataString();
                 String temp = lastDataString + str;
                 Matcher m = INVALID_DATA_REGULAR.matcher(temp);
@@ -200,8 +200,8 @@ public class Caculator extends Activity {
             } else {
                 String lastDataString =  getLastDataString();
                 int value = Integer.valueOf(str).intValue();
-                if(lastDataString.startsWith("0") && !lastDataString.startsWith(DECIMAL_PREFIX)) {
-          	        if(value >= 0 && value <= 9) {
+                if (lastDataString.startsWith("0") && !lastDataString.startsWith(DECIMAL_PREFIX)) {
+          	        if (value >= 0 && value <= 9) {
            	            int len = mInput.getText().toString().length();
            	            String subString = mInput.getText().toString().substring(0, len-1);
            	            mInput.setText(subString);
@@ -216,7 +216,7 @@ public class Caculator extends Activity {
     }
 
     private boolean checkLastCharIsOperator () {
-        if(mInput != null && !TextUtils.isEmpty(mInput.getText().toString())) {
+        if (mInput != null && !TextUtils.isEmpty(mInput.getText().toString())) {
             String str = mInput.getText().toString();
             char ch = str.charAt(str.length()-1);
 
@@ -376,28 +376,28 @@ public class Caculator extends Activity {
         double result = 0.0;
         switch (operator) {
         case ADD:
-            if(!existParamB) {
+            if (!existParamB) {
                 paramB = 0.0;
             }
             result = paramA + paramB;
             break;
 
         case SUB:
-            if(!existParamB) {
+            if (!existParamB) {
                 paramB = 0.0;
             }
             result = paramA - paramB;
             break;
 
         case MULTI:
-            if(!existParamB) {
+            if (!existParamB) {
                 paramB = 1.0;
             }
             result = paramA * paramB;
             break;
 
         case DIV:
-            if(!existParamB) {
+            if (!existParamB) {
                 paramB = 1.0;
             }
 
@@ -414,7 +414,7 @@ public class Caculator extends Activity {
             break;
         }
 
-        if(DEBUG) {
+        if (DEBUG) {
             logi(paramA + convertSymbol2String(operator) + paramB + "=" + result);
         }
         return result;
@@ -452,7 +452,7 @@ public class Caculator extends Activity {
                 if (allowPop2ndData) {
                     secondValue = mDataStack.pop();
                 }
-            } else if(mDataStack.isEmpty() && allowPop2ndData) {
+            } else if (mDataStack.isEmpty() && allowPop2ndData) {
             	exist2ndValue = false;
             }
 
@@ -788,7 +788,7 @@ public class Caculator extends Activity {
         }
 
         public void dump() {
-            if(DEBUG) {
+            if (DEBUG) {
                 logi("----------data dump begin--------------");
                 StringBuilder sb = new StringBuilder();
                 for (int i=0; i<mLength; i++) {
@@ -860,7 +860,7 @@ public class Caculator extends Activity {
         }
 
         public void dump() {
-            if(DEBUG) {
+            if (DEBUG) {
                 logi("----------symbol dump begin--------------");
                 StringBuilder sb = new StringBuilder();
                 for (int i=0; i<mLength; i++) {
