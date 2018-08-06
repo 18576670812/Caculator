@@ -21,7 +21,7 @@
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
-//            Buddha bless, no bug forever
+//            Buddha bless, no bug forever.
 //
 package com.whb.caculator;
 
@@ -42,7 +42,8 @@ import android.widget.Toast;
 
 public class Caculator extends Activity {
     private static final String TAG = "Caculator";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
+    private static final boolean VDEBUG = false;
 
     private Context mContext = null;
     private Button mOne = null;
@@ -414,9 +415,7 @@ public class Caculator extends Activity {
             break;
         }
 
-        if (DEBUG) {
-            logi(paramA + convertSymbol2String(operator) + paramB + "=" + result);
-        }
+        logd(paramA + convertSymbol2String(operator) + paramB + "=" + result);
         return result;
     }
 
@@ -727,10 +726,26 @@ public class Caculator extends Activity {
         mSymbolStack.dump();
     }
 
+    private void logv(String str) 
+        if (VDEBUG) {
+            Log.v(TAG, str);
+        }
+    }
+
+    private void logd(String str) {
+        if (DEBUG) {
+            Log.d(TAG, str);
+        }
+    }
+
     private void logi(String str) {
         if (DEBUG) {
     	    Log.i(TAG, str);
         }
+    }
+
+    private void logw(String str) {
+        Log.w(TAG, str);
     }
 
     private void loge(String str) {
