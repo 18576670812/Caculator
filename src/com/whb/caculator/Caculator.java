@@ -21,7 +21,7 @@
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
-//            ·ð×æ±£ÓÓ         ÓÀÎÞBUG
+//            Buddha bless, no bug forever
 //
 package com.whb.caculator;
 
