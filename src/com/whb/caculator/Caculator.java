@@ -726,7 +726,7 @@ public class Caculator extends Activity {
         mSymbolStack.dump();
     }
 
-    private void logv(String str) 
+    private void logv(String str) {
         if (VDEBUG) {
             Log.v(TAG, str);
         }
